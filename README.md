@@ -70,11 +70,11 @@ model.save("path_builder_agent")
 
 The goal of the agent is to build a path and reach the target position (randomly generated) from the starting position (also randomly generated) in the minimum possible number of timesteps in a grid.
 
-# Observation Space
+### Observation Space
 
 The observation is a ```ndarray``` with shape ```(8,)``` consisting of the x and y coordinates of the agent's and target's positions and the status (```-1```: out of bounds, ```0```: not built, ```1```: built) of the 4 neighboring cells (up, down, left, right).
 
-# Action Space
+### Action Space
 
 There are 4 discrete actions:
 
@@ -86,17 +86,17 @@ There are 4 discrete actions:
 
 3: Move right
 
-# Rewards
+### Rewards
 
-A reward of ```+1``` is given for moving a cell closer to the target, and a reward of ```-1``` is given for moving a cell further from the target. Additionally, penalties are given for moving to already built cells (```-0.5```) and trying to move out of bounds (```-2```). A reward of ```+25``` is given for reaching the target.
+A reward of ```+1``` is given for moving a cell closer to the target, and a penalty of ```-1``` is given for moving a cell further from the target. Additionally, penalties are given for moving to already built cells (```-0.5```) and trying to move out of bounds (```-2```). A reward of ```+25``` is given for reaching the target.
 
-# Episode End
+### Episode End
 
 An episode is terminated when the agent reaches the target position.
 
 An episode is truncated when the episode length reaches the maximum number of timesteps calculated at the start of the episode. ```episode_steps = int(distance_to_target * (1 + extra_timesteps_fraction))```
 
-# Arguments
+### Arguments
 
 ```python
 env = gym.make("PathBuilder-v0", render_mode=None, grid_size=16, extra_timesteps_fraction=0.5)
@@ -108,6 +108,6 @@ env = gym.make("PathBuilder-v0", render_mode=None, grid_size=16, extra_timesteps
 
 ```extra_timesteps_fraction: float = 0.5``` determines the fraction of extra timesteps available to the agent. Must be non-negative.
 
-# Version History
+### Version History
 
 v0: Initial version
